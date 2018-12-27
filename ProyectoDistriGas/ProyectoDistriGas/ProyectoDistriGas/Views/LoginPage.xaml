@@ -5,7 +5,8 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Login">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView
+            BindingContext="{Binding Login} ">
 
             <StackLayout
             Padding="5">
@@ -30,7 +31,7 @@
                         Grid.Row="0"
                         Grid.Column="1"
                         Keyboard="Email"
-                        Text=""
+                        Text="{Binding Email,Mode=TwoWay}"
                         Placeholder="Ingrese su Email">
                     </Entry>
                     <Label
@@ -43,21 +44,26 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         IsPassword="true"
-                        Text=""
+                        Text="{Binding Password,Mode=TwoWay}"
                         Placeholder="">
                     </Entry>
                 </Grid>
+                <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand">
+                      
+                </ActivityIndicator>
                 <StackLayout
                     Margin="10,0"
                     Orientation="Horizontal"
                     VerticalOptions="CenterAndExpand">
                     <Label
                         HorizontalOptions="StartAndExpand"
-                        Text="Recurdameen este dispositivo"
+                        Text="Recurdame en este dispositivo"
                         VerticalOptions="Center">
                     </Label>
                     <Switch
-                        IsToggled="True"
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}"
                         HorizontalOptions="End">
                     </Switch>
                 </StackLayout>
@@ -74,11 +80,11 @@
                     <Button
                         BackgroundColor="Navy"
                         BorderRadius="23"
-                        
+                        Command="{Binding LoginCommand}"
                         HeightRequest="46"
                         HorizontalOptions="FillAndExpand"
                         
-                        Text="lOGIN"
+                        Text="Login"
                         TextColor="White">
                     </Button>
                     <Button

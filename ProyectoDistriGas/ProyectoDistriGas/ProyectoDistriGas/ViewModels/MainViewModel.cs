@@ -7,11 +7,32 @@ namespace ProyectoDistriGas.ViewModels
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using ViewModels;
 
-   public class MainViewModel
+
+    public class MainViewModel
     {
 
-      
        
+
+        #region ViewModels
+        public LoginViewModel Login
+        {
+            get;
+            set;
+        }
+
+        #endregion
+
+        #region Constructors
+        public MainViewModel()
+        {
+            
+            this.Login = new LoginViewModel();
+        }
+        #endregion
+
+        
+
     }
 }
