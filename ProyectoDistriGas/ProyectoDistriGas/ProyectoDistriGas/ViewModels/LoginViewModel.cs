@@ -6,6 +6,7 @@ namespace ProyectoDistriGas.ViewModels
     using System.Windows.Input;
     using System;
     using Xamarin.Forms;
+    using Views;
 
     public class LoginViewModel: BaseViewModel
     {
@@ -139,6 +140,7 @@ namespace ProyectoDistriGas.ViewModels
                    "ok",
                    "Aceptar"
                    );
+                 
             }
 
             #endregion
