@@ -7,7 +7,7 @@ namespace ProyectoDistriGas.ViewModels
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using ViewModels;
+    using ViewModels;  
 
 
     public class MainViewModel
@@ -21,18 +21,45 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public VariableViewModel Variable
+        {
+            get;
+            set;
+        }
+        public InicioViewModel Inicio
+        {
+            get;
+            set;
+        }
+        public CasaViewModel Casa
+        {
+            get;
+            set;
+        }
 
         #endregion
 
         #region Constructors
         public MainViewModel()
         {
-            
-            this.Login = new LoginViewModel();
+            instance = this;
+         
+            this.Inicio = new InicioViewModel();
+        }
+        #endregion
+        #region Singleton
+        private static MainViewModel instance;
+        public static MainViewModel GetInstance()
+        {
+            if(instance==null)
+            {
+                return new MainViewModel();
+            }
+            return instance;
         }
         #endregion
 
-        
+
 
     }
 }

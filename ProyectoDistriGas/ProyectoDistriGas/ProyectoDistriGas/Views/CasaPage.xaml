@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoDistriGas.Views.CasaPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Icon="icon"
+             Title="Casa">
+    <ContentPage.Content >
+        <StackLayout BindingContext="{Binding Casa}">
+            <Label Text="casa" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

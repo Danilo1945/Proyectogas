@@ -5,6 +5,7 @@
              x:Class="ProyectoDistriGas.MainPage">
     <Label Text="hola"></Label>
     
+    
 
 
 </ContentPage>

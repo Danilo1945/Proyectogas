@@ -7,6 +7,7 @@ namespace ProyectoDistriGas.ViewModels
     using System;
     using Xamarin.Forms;
     using Views;
+    using ViewModels;
 
     public class LoginViewModel: BaseViewModel
     {
@@ -140,7 +141,9 @@ namespace ProyectoDistriGas.ViewModels
                    "ok",
                    "Aceptar"
                    );
-                 
+                MainViewModel.GetInstance().Casa = new CasaViewModel();
+                await Application.Current.MainPage.Navigation.PushAsync(new CasaTabbedPage());
+
             }
 
             #endregion
