@@ -24,7 +24,8 @@ namespace ProyectoDistriGas.ViewModels
       
   
         private string valor;
-        private string password;
+        private bool isRunning;
+
         #endregion
         #region propiedades
         public ObservableCollection<Sensor> Sensor
@@ -40,21 +41,13 @@ namespace ProyectoDistriGas.ViewModels
             set { SetValue(ref this.valor, value); }
 
         }
-
-        public string Password
+        public bool IsRunning
         {
-            get
-            {
-                return password;
-            }
-            set
-            {
-                // para poder refrescar los valores de las vistas 
-                // esta eredando de baseviewmodel
-                SetValue(ref password, value);
-
-            }
+            get { return this.isRunning; }
+            set { SetValue(ref this.isRunning, value); }
         }
+
+
 
 
         #endregion
@@ -65,8 +58,10 @@ namespace ProyectoDistriGas.ViewModels
         {
             this.apiService = new ApiService();
             this.LoadSensor();
-           this. Valor = "7677";
-            this.Password ="ghjgj";
+            this.Valor = string.Empty;
+            IsRunning = true;
+
+
         }
 
         #endregion
@@ -76,9 +71,10 @@ namespace ProyectoDistriGas.ViewModels
 
         private  async void LoadSensor()
         {
+            IsRunning = true;
          
             var response = await this.apiService.GetListURL<Sensor>(
-                "http://192.168.137.19/");
+                "http://192.168.137.79/");
 
 
             if (!response.IsSuccess)
@@ -98,10 +94,17 @@ namespace ProyectoDistriGas.ViewModels
 
             await Application.Current.MainPage.DisplayAlert("Error", porcentaje.ToString(), "Aceptar");
             this.Valor = porcentaje.ToString();
+            IsRunning = false; ;
         }
 
 
         #endregion
-        
+
+        #region Comandos
+
+
+
+        #endregion
+
     }
 }

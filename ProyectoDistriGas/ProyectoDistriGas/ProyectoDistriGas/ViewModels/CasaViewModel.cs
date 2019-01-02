@@ -8,5 +8,16 @@ namespace ProyectoDistriGas.ViewModels
 {
    public class CasaViewModel
     {
+        #region Constructores
+        public CasaViewModel()
+        {
+
+            MainViewModel.GetInstance().Cilindro = new CilindroViewModel();
+            
+        }
+        #endregion
+
+
+
     }
 }

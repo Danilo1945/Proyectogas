@@ -8,15 +8,27 @@
 
     <ContentPage.Content  >
         <StackLayout BindingContext="{Binding Variable}">
-            <Button Text="hol"/>
 
-            <Entry
-                       
-                       
-                        Text="{Binding Password,Mode=TwoWay}"
-                        Placeholder="">
-            </Entry>
+            <ActivityIndicator
+                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
+
+            </ActivityIndicator>
+            
+           
+
             <Label Text="{Binding Valor,Mode=TwoWay}"></Label>
+            <Button
+                        BackgroundColor="Navy"
+                        BorderRadius="23"
+                        Command="{Binding RefrescarCommand}"
+                        
+                        HeightRequest="46"
+                        HorizontalOptions="FillAndExpand"
+                      
+                        
+                        Text="Refrescar"
+                        TextColor="White">
+            </Button>
         </StackLayout>
        
 

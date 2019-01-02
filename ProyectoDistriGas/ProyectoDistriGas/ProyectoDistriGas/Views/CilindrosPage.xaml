@@ -6,9 +6,20 @@
              Icon="icon"
              Title="Cilindro">
     <ContentPage.Content>
-        <StackLayout >
+        <StackLayout BindingContext="{Binding Cilindro} ">
             <Label Text="Cilindros" />
-           
+            <Button
+                        BackgroundColor="Navy"
+                        BorderRadius="23"
+                        Command="{Binding ConectarCommand}"
+                        
+                        HeightRequest="46"
+                        HorizontalOptions="FillAndExpand"
+                      
+                        
+                        Text="Login"
+                        TextColor="White">
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -3,8 +3,8 @@
 #include <aREST.h>
 
 aREST rest = aREST(); // instanciamos el objeto
-const char* ssid = "INTERNET CNT";
-const char* password = "12345678";
+const char* ssid = "Dan";
+const char* password = "23456789";
 WiFiServer server(80);// creamos una intancia del servidor con el puerto 80
 int porcentaje=9; // variable del sensor leido
 // Declare functions to be exposed to the API

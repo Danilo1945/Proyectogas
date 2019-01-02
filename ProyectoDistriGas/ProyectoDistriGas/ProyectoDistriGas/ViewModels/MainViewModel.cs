@@ -50,6 +50,8 @@ namespace ProyectoDistriGas.ViewModels
             instance = this;
          
             this.Inicio= new InicioViewModel();
+           
+
         }
         #endregion
         #region Singleton
