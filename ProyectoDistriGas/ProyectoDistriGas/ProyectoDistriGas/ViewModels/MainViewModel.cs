@@ -36,6 +36,11 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public CilindroViewModel Cilindro
+        {
+            get;
+            set;
+        }
 
         #endregion
 
@@ -44,7 +49,7 @@ namespace ProyectoDistriGas.ViewModels
         {
             instance = this;
          
-            this.Inicio = new InicioViewModel();
+            this.Inicio= new InicioViewModel();
         }
         #endregion
         #region Singleton

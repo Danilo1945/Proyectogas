@@ -138,13 +138,15 @@ namespace ProyectoDistriGas.Services
                     };
                 }
                 
-                var list = JsonConvert.DeserializeObject<List<T>>(result);
+                var list = JsonConvert.DeserializeObject<T>(result);
                 return new Response
                 {
                     IsSuccess = true,
                     Message = "Ok",
                     Result = list,
                 };
+
+               
             }
             catch (Exception ex)
             {

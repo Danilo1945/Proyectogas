@@ -6,8 +6,9 @@
              Icon="icon"
              Title="Cilindro">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout >
             <Label Text="Cilindros" />
+           
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

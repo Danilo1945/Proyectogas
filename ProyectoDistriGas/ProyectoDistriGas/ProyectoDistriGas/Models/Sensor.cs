@@ -10,7 +10,8 @@ namespace ProyectoDistriGas.Models
     using System.Threading.Tasks;
     public class Sensor
     {
-        
+        [JsonProperty(PropertyName = "variables")]
+        public Variable Variable { get; set; }
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
         [JsonProperty(PropertyName = "name")]

@@ -10,8 +10,10 @@ namespace ProyectoDistriGas.ViewModels
     using System.Collections.ObjectModel;
     using Services;
     using Xamarin.Forms;
+    using System.Windows.Input;
+    using GalaSoft.MvvmLight.Command;
 
-    public class VariableViewModel:BaseViewModel
+    public class VariableViewModel: BaseViewModel
     {
         #region Services
         private ApiService apiService;
@@ -19,6 +21,10 @@ namespace ProyectoDistriGas.ViewModels
 
         #region Atributos
         private ObservableCollection<Sensor> sensor;
+      
+  
+        private string valor;
+        private string password;
         #endregion
         #region propiedades
         public ObservableCollection<Sensor> Sensor
@@ -26,6 +32,30 @@ namespace ProyectoDistriGas.ViewModels
             get { return this.sensor; }
             set { SetValue(ref this.sensor, value); }
          }
+
+        
+        public string Valor
+        {
+            get { return this.valor; }
+            set { SetValue(ref this.valor, value); }
+
+        }
+
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                // para poder refrescar los valores de las vistas 
+                // esta eredando de baseviewmodel
+                SetValue(ref password, value);
+
+            }
+        }
+
 
         #endregion
 
@@ -35,6 +65,8 @@ namespace ProyectoDistriGas.ViewModels
         {
             this.apiService = new ApiService();
             this.LoadSensor();
+           this. Valor = "7677";
+            this.Password ="ghjgj";
         }
 
         #endregion
@@ -44,8 +76,9 @@ namespace ProyectoDistriGas.ViewModels
 
         private  async void LoadSensor()
         {
+         
             var response = await this.apiService.GetListURL<Sensor>(
-                "http://192.168.1.4/");
+                "http://192.168.137.19/");
 
 
             if (!response.IsSuccess)
@@ -54,11 +87,21 @@ namespace ProyectoDistriGas.ViewModels
                 return;
             }
 
-            var list=(List<Sensor>) response.Result;
-            this.Sensor = new ObservableCollection<Models.Sensor>(list);
+            var list=(Sensor) response.Result;
+            if (response.Result== null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Aceptar");
+                return;
+            }
+
+            int porcentaje = list.Variable.Porcentaje;
+
+            await Application.Current.MainPage.DisplayAlert("Error", porcentaje.ToString(), "Aceptar");
+            this.Valor = porcentaje.ToString();
         }
 
 
         #endregion
+        
     }
 }

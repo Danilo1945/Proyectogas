@@ -4,7 +4,7 @@ namespace ProyectoDistriGas.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
     using System.Windows.Input;
-    using System;
+
     using Xamarin.Forms;
     using Views;
     using ViewModels;
@@ -23,8 +23,6 @@ namespace ProyectoDistriGas.ViewModels
 
 
         #endregion
-
-
 
 
         #region propeties
@@ -77,7 +75,6 @@ namespace ProyectoDistriGas.ViewModels
             }
         }
         #endregion
-
 
         #region constructores
         public LoginViewModel()
@@ -136,11 +133,7 @@ namespace ProyectoDistriGas.ViewModels
             {
                 this.IsRunning = true;
                 this.IsEnable = true;
-                await Application.Current.MainPage.DisplayAlert(
-                   "Mensaje",
-                   "ok",
-                   "Aceptar"
-                   );
+               
                 MainViewModel.GetInstance().Casa = new CasaViewModel();
                 await Application.Current.MainPage.Navigation.PushAsync(new CasaTabbedPage());
 

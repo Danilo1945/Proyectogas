@@ -4,12 +4,27 @@
              x:Class="ProyectoDistriGas.Views.VariablePage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Sensor">
-             >
-    <ContentPage.Content>
-        <StackLayout 
-            BindingContext="{Binding Variable}"
-            >
-            <Label Text="Welcome to Xamarin Forms!" />
+
+
+    <ContentPage.Content  >
+        <StackLayout BindingContext="{Binding Variable}">
+            <Button Text="hol"/>
+
+            <Entry
+                       
+                       
+                        Text="{Binding Password,Mode=TwoWay}"
+                        Placeholder="">
+            </Entry>
+            <Label Text="{Binding Valor,Mode=TwoWay}"></Label>
         </StackLayout>
+       
+
     </ContentPage.Content>
+      
+           
+
+          
+            
+  
 </ContentPage>
