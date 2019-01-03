@@ -5,6 +5,9 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Icon="icon"
              Title="Casa">
+    <ContentPage.ToolbarItems >
+        <ToolbarItem Text="Nuevo" Clicked="ToolbarItem_Clicked" Command="{Binding NewCasaCommand}"  />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content >
         <StackLayout BindingContext="{Binding Casa}">
             <Label Text="casa" />

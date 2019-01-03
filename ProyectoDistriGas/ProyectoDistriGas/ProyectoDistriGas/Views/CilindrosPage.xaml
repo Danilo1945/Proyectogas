@@ -5,6 +5,9 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Icon="icon"
              Title="Cilindro">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nuevo"  />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Cilindro} ">
             <Label Text="Cilindros" />

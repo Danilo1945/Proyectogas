@@ -36,6 +36,11 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public NewCasaViewModel NewCasa
+        {
+            get;
+            set;
+        }
         public CilindroViewModel Cilindro
         {
             get;
