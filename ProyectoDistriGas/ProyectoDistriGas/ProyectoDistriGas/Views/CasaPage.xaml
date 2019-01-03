@@ -9,8 +9,65 @@
         <ToolbarItem Text="Nuevo" Clicked="ToolbarItem_Clicked" Command="{Binding NewCasaCommand}"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content >
-        <StackLayout BindingContext="{Binding Casa}">
-            <Label Text="casa" />
-        </StackLayout>
+        
+
+        <ScrollView  BindingContext="{Binding Casa}">
+
+
+            <ListView 
+                BackgroundColor="Silver"
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding Casa}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="true"
+                                Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectLandCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                  
+                                    <StackLayout 
+                                        Grid.Column="1"
+                                        VerticalOptions="Center">
+                                        <Label 
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Name}"
+                                            TextColor="Black">
+                                        </Label>
+                                        <Label 
+                                            Text="{Binding Capital}"
+                                            TextColor="Black">
+                                        </Label>
+                                    </StackLayout>
+                                    <Image 
+                                        Grid.Column="2"
+                                        HorizontalOptions="End" 
+                                        Source="ic_chevron_right">
+                                    </Image>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+       
+
+
+
     </ContentPage.Content>
 </ContentPage>
