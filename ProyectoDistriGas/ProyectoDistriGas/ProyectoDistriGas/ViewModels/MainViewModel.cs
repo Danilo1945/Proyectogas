@@ -46,6 +46,12 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public NewCilindroViewModel NewCilindro
+        {
+            get;
+            set;
+        }
+
 
         #endregion
 

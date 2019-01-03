@@ -42,8 +42,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Casa.cs" />
+    <Compile Include="Models\CilindroGas.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Sensor.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Variable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiService.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NewCasaViewModel.cs" />
+    <Compile Include="ViewModels\NewCilindroViewModel.cs" />
     <Compile Include="ViewModels\PedidoViewModel.cs" />
     <Compile Include="ViewModels\VariableViewModel.cs" />
     <Compile Include="Views\CasaPage.xaml.cs">
@@ -74,6 +78,9 @@
     </Compile>
     <Compile Include="Views\NewCasaPage.xaml.cs">
       <DependentUpon>NewCasaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewCilindroPage.xaml.cs">
+      <DependentUpon>NewCilindroPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PedidosPage.xaml.cs">
       <DependentUpon>PedidosPage.xaml</DependentUpon>
@@ -179,6 +186,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\NewCasaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\NewCilindroPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

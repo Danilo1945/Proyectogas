@@ -6,7 +6,7 @@
              Icon="icon"
              Title="Cilindro">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Nuevo"  />
+        <ToolbarItem Text="Nuevo"  Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Cilindro} ">
