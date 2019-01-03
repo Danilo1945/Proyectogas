@@ -25,6 +25,7 @@ namespace ProyectoDistriGas.ViewModels
   
         private string valor;
         private bool isRunning;
+        private bool isEnable;
 
         #endregion
         #region propiedades
@@ -46,6 +47,12 @@ namespace ProyectoDistriGas.ViewModels
             get { return this.isRunning; }
             set { SetValue(ref this.isRunning, value); }
         }
+        public bool IsEnable
+        {
+            get { return this.isEnable; }
+            set { SetValue(ref this.isEnable, value); }
+        }
+
 
 
 
@@ -71,10 +78,11 @@ namespace ProyectoDistriGas.ViewModels
 
         private  async void LoadSensor()
         {
+            IsEnable = false;
             IsRunning = true;
          
             var response = await this.apiService.GetListURL<Sensor>(
-                "http://192.168.137.79/");
+                "http://192.168.137.15/");
 
 
             if (!response.IsSuccess)
@@ -92,16 +100,37 @@ namespace ProyectoDistriGas.ViewModels
 
             int porcentaje = list.Variable.Porcentaje;
 
-            await Application.Current.MainPage.DisplayAlert("Error", porcentaje.ToString(), "Aceptar");
-            this.Valor = porcentaje.ToString();
-            IsRunning = false; ;
+            await Application.Current.MainPage.DisplayAlert("Ecaner Completo", porcentaje.ToString(), "Aceptar");
+            this.Valor ="GLP= "+ porcentaje.ToString()+" %";
+            IsRunning = false;
+            IsEnable = true;
         }
 
 
         #endregion
 
         #region Comandos
+        public ICommand RefrescarCommand
+        {
+            get
+            {
+                // recibe el evento y lo transfiere al metodo login
+                return new RelayCommand(Refrescar);
+            }
+            set
+            {
 
+
+            }
+
+        }
+
+        private void Refrescar()
+        {
+            LoadSensor();
+
+
+        }
 
 
         #endregion

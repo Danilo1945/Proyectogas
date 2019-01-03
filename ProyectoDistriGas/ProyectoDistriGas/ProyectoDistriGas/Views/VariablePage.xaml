@@ -16,7 +16,7 @@
             
            
 
-            <Label Text="{Binding Valor,Mode=TwoWay}"></Label>
+            <Label Text="{Binding Valor,Mode=TwoWay}" FontSize="25" TextColor="Blue" VerticalOptions="Center"  ></Label>
             <Button
                         BackgroundColor="Navy"
                         BorderRadius="23"
@@ -24,7 +24,7 @@
                         
                         HeightRequest="46"
                         HorizontalOptions="FillAndExpand"
-                      
+                        IsEnabled="{Binding IsEnable}"
                         
                         Text="Refrescar"
                         TextColor="White">
