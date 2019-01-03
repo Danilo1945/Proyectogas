@@ -17,7 +17,7 @@
                         HorizontalOptions="FillAndExpand"
                       
                         
-                        Text="Login"
+                        Text="Conectar Al Sensor"
                         TextColor="White">
             </Button>
         </StackLayout>
