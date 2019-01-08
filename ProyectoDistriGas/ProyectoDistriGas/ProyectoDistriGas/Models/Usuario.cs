@@ -9,30 +9,55 @@ namespace ProyectoDistriGas.Models
 {
     public class Usuario
     {
-        [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
-        [JsonProperty(PropertyName = "cedula")]
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
+        [JsonProperty("cedula")]
         public string Cedula { get; set; }
-        [JsonProperty(PropertyName = "nombres")]
+
+        [JsonProperty("nombres")]
         public string Nombres { get; set; }
-        [JsonProperty(PropertyName = "apellidos")]
+
+        [JsonProperty("apellidos")]
         public string Apellidos { get; set; }
-        [JsonProperty(PropertyName = " celula")]
+
+        [JsonProperty("celular")]
         public string Celular { get; set; }
-        [JsonProperty(PropertyName = "direccion")]
+
+        [JsonProperty("direccion")]
         public string Direccion { get; set; }
-        [JsonProperty(PropertyName = "created")]
-        public DateTime? Created { get; set; }
-        [JsonProperty(PropertyName = "modified")]
-        public DateTime? Modified { get; set; }
-        [JsonProperty(PropertyName = "latitud")]
+
+        [JsonProperty("created")]
+        public DateTimeOffset? Created { get; set; }
+
+        [JsonProperty("modified")]
+        public DateTimeOffset? Modified { get; set; }
+
+        [JsonProperty("latitud")]
         public double Latitud { get; set; }
-        [JsonProperty(PropertyName = "longitud")]
+
+        [JsonProperty("longitud")]
         public double Longitud { get; set; }
-        [JsonProperty(PropertyName = "enable")]
+
+        [JsonProperty("enable")]
         public bool Enable { get; set; }
-        [JsonProperty(PropertyName = "enable")]
+
+        [JsonProperty("email")]
         public string Email { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
+
+        [JsonProperty("pedidos_generales")]
+        public List<PedidosGenerales> PedidosGenerales { get; set; }
+
+        [JsonProperty("pedidos")]
+        public List<Pedido> Pedidos { get; set; }
+
+        [JsonProperty("casa")]
+        public List<Casa> Casa { get; set; }
+
+        [JsonProperty("calificacion_usuario")]
+        public List<object> CalificacionUsuario { get; set; }
     }
 
 }

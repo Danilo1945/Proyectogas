@@ -12,10 +12,11 @@ namespace ProyectoDistriGas.Services
     using Newtonsoft.Json;
     using Plugin.Connectivity;
     using Xamarin.Forms;
+    using Newtonsoft.Json.Linq;
 
     public class ApiService
     {
-        /*
+     
         public async Task<Response> CheckConnection()
         {
             if (!CrossConnectivity.Current.IsConnected)
@@ -44,7 +45,7 @@ namespace ProyectoDistriGas.Services
                 Message = "Ok",
             };
         }
-        */
+     
         public async Task<TokenResponse> GetToken(
             string urlBase,
             string username,
@@ -127,8 +128,9 @@ namespace ProyectoDistriGas.Services
                 client.BaseAddress = new Uri(url);
                
                 var response = await client.GetAsync(url);
+                
                 var result = await response.Content.ReadAsStringAsync();
-
+                var r = result;
                 if (!response.IsSuccessStatusCode)
                 {
                     return new Response
@@ -158,15 +160,18 @@ namespace ProyectoDistriGas.Services
             }
         }
         public async Task<Response> GetList<T>(
-            string urlBase,
-            string servicePrefix,
-            string controller)
-          {
+            string urlBase, 
+            string Serviceprefix,
+            string controller
+            ) {
+            
             try
             {
                 var client = new HttpClient();
-                client.BaseAddress = new Uri(urlBase);
-                var url = string.Format("{0}{1}", servicePrefix, controller);
+
+                var url = urlBase + Serviceprefix + controller;
+                client.BaseAddress = new Uri(url);
+                
                 var response = await client.GetAsync(url);
                 var result = await response.Content.ReadAsStringAsync();
 
@@ -179,7 +184,12 @@ namespace ProyectoDistriGas.Services
                     };
                 }
 
-                var list = JsonConvert.DeserializeObject<List<T>>(result);
+               
+
+
+
+                 var list = JsonConvert.DeserializeObject<List<T>>("["+result+"]");
+              
                 return new Response
                 {
                     IsSuccess = true,
@@ -192,7 +202,7 @@ namespace ProyectoDistriGas.Services
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = ex.Message,
+                    Message = ex.InnerException.Message,
                 };
             }
         }

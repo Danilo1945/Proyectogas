@@ -7,13 +7,21 @@ namespace ProyectoDistriGas.ViewModels
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using ViewModels;  
+    using ViewModels;
+    using Services;
+    using Models;
 
 
     public class MainViewModel
     {
+        #region Propiedades
+        public List<Casa> Casas
+        {
+            get;
+            set;
+        }
+        #endregion
 
-       
 
         #region ViewModels
         public LoginViewModel Login
@@ -51,6 +59,12 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+       
+        public Sesion Sesion
+        {
+            get;
+            set;
+        }
 
 
         #endregion
@@ -61,7 +75,7 @@ namespace ProyectoDistriGas.ViewModels
             instance = this;
          
             this.Inicio= new InicioViewModel();
-           
+            this.Sesion = new Sesion();
 
         }
         #endregion

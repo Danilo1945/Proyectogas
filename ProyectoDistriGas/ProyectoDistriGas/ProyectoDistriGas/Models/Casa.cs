@@ -9,19 +9,26 @@ namespace ProyectoDistriGas.Models
 {
     public class Casa
     {
-        [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
-        [JsonProperty(PropertyName = "direccion")]
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
+        [JsonProperty("direccion")]
         public string Direccion { get; set; }
-        [JsonProperty(PropertyName = "latitud")]
+
+        [JsonProperty("latitud")]
         public double Latitud { get; set; }
-        [JsonProperty(PropertyName = "longitud")]
+
+        [JsonProperty("longitud")]
         public double Longitud { get; set; }
-        [JsonProperty(PropertyName = "telefono")]
+
+        [JsonProperty("telefono")]
+      
         public string Telefono { get; set; }
-        [JsonProperty(PropertyName = "usuario_id")]
-        public int Usuario_Id { get; set; }
-        [JsonProperty(PropertyName = "usuario")]
+
+        [JsonProperty("usuario_id")]
+        public long UsuarioId { get; set; }
+
+        [JsonProperty("usuario")]
         public Usuario Usuario { get; set; }
     }
 }

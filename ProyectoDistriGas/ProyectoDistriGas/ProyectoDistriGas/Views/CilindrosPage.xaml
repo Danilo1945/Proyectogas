@@ -10,7 +10,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout BindingContext="{Binding Cilindro} ">
-            <Label Text="Cilindros" />
+            <Label Text="{Binding Direccion}" />
             <Button
                         BackgroundColor="Navy"
                         BorderRadius="23"

@@ -10,9 +10,11 @@ namespace ProyectoDistriGas.ViewModels
     using System.Windows.Input;
     using Xamarin.Forms;
     using Views;
+    using Models;
 
-    public class CilindroViewModel: BaseViewModel
+   public  class CilindroViewModel: BaseViewModel   
     {
+
         #region Servicios
 
         #endregion
@@ -20,17 +22,23 @@ namespace ProyectoDistriGas.ViewModels
 
         #endregion
         #region Propiedades
+        public Casa Casas
+        {
+            get;
+            set;
+        }
+
 
         #endregion
         #region Propiedades
 
         #endregion
         #region Costructores
-        public CilindroViewModel()
+        public  CilindroViewModel(Casa casa)
         {
-
+            this.Casas = casa;
+            
         }
-
         #endregion
         #region Comandos
         public ICommand ConectarCommand
