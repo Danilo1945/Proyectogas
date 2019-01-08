@@ -44,6 +44,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Casa.cs" />
+    <Compile Include="Models\CasaObjet.cs" />
     <Compile Include="Models\CilindroGas.cs" />
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\PedidosGenerales.cs" />
@@ -58,7 +59,6 @@
     <Compile Include="Services\Sesion.cs" />
     <Compile Include="Services\TokenResponse.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Casa1ViewModel.cs" />
     <Compile Include="ViewModels\CasaItemViewModel.cs" />
     <Compile Include="ViewModels\CasaViewModel.cs" />
     <Compile Include="ViewModels\CilindroViewModel.cs" />

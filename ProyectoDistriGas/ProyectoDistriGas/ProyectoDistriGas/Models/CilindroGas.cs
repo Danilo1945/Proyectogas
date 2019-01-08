@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProyectoDistriGas.Models
 {
-    public class CilindroGa
+    public class CilindroGas
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
-        [JsonProperty(PropertyName = "colo")]
+        [JsonProperty(PropertyName = "color")]
         public string Color { get; set; }
         [JsonProperty(PropertyName = "detalle")]
         public string Detalle { get; set; }
@@ -20,6 +20,6 @@ namespace ProyectoDistriGas.Models
         [JsonProperty(PropertyName = "casa_id")]
         public int? Casa_Id { get; set; }
         [JsonProperty(PropertyName = "casa")]
-        public Casa Casa { get; set; }
+        public Casa Casa { get; set; }  
     }
 }

@@ -30,5 +30,7 @@ namespace ProyectoDistriGas.Models
 
         [JsonProperty("usuario")]
         public Usuario Usuario { get; set; }
+        [JsonProperty("cilindro_gas")]
+        public List<CilindroGas> CilindroGas { get; set; }
     }
 }
