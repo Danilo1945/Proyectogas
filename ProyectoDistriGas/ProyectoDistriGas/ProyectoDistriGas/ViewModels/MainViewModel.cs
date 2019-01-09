@@ -20,6 +20,11 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public List<CilindroGas> CilindroGas
+        {
+            get;
+            set;
+        }
         #endregion
 
 
@@ -59,18 +64,24 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
-       
+        
+  
         public Sesion Sesion
+        {
+            get;
+            set;
+        }
+        public DetalleClilindroViewModel DetalleCilindro
         {
             get;
             set;
         }
 
 
-        #endregion
+    #endregion
 
-        #region Constructors
-        public MainViewModel()
+    #region Constructors
+    public MainViewModel()
         {
             instance = this;
          

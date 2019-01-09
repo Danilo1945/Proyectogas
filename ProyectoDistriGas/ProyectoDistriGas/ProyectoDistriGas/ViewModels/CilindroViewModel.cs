@@ -78,19 +78,28 @@ namespace ProyectoDistriGas.ViewModels
                 return;
             }
             this.Casa = (List<CasaObjet>)response.Result;
-            List<CilindroGas> listaCindros = new List<CilindroGas>();
+            MainViewModel.GetInstance().CilindroGas = new List<CilindroGas>();
+            
 
             int contador = 0;
 
 
-            for (int i = 0; i < this.Casa.Count + 1; i++)
+            for (int i = 0; i < this.Casa.Count ; i++)
             {
                 foreach (var item in this.Casa)
                 {
-                    listaCindros.Add(new CilindroGas() {
-                    Id= item.Casa.CilindroGas[contador].Id
-
-                    });
+                    foreach (var it in item.Casa.CilindroGas)
+                    {
+                        MainViewModel.GetInstance().CilindroGas.Add(new CilindroGas()
+                        {
+                            Id = it.Id,
+                            Color = it.Color,
+                            Detalle = it.Detalle,
+                            Direccion_Ip = it.Direccion_Ip,
+                            Casa_Id = it.Casa_Id
+                        });
+                    }
+                    
                    
 
                 }
@@ -98,7 +107,7 @@ namespace ProyectoDistriGas.ViewModels
             }
 
 
-
+            this.Cilindro = new ObservableCollection<CilindroGas>(this.ToLandItemViewModel());
 
 
 
@@ -107,6 +116,19 @@ namespace ProyectoDistriGas.ViewModels
                      "mensaje",
                     Casas.Direccion.ToString(),
                      "Aceptar");
+        }
+
+        private IEnumerable<CilindroGas> ToLandItemViewModel()
+        {
+            return MainViewModel.GetInstance().CilindroGas.Select(l => new CilindroItemViewModel
+            {
+                Id = l.Id,
+                Color = l.Color,
+                Detalle = l.Detalle,
+                Direccion_Ip = l.Direccion_Ip,
+                Casa_Id = l.Casa_Id
+
+            });
         }
         #endregion
         #region Comandos
@@ -128,8 +150,7 @@ namespace ProyectoDistriGas.ViewModels
         private async void Conectar()
         {
           
-            MainViewModel.GetInstance().Variable = new VariableViewModel();
-            await Application.Current.MainPage.Navigation.PushAsync(new VariablePage());
+            
         }
         #endregion
 

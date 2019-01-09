@@ -18,6 +18,7 @@ namespace ProyectoDistriGas.ViewModels
         #region Services
         private ApiService apiService;
         #endregion
+      
 
         #region Atributos
         private ObservableCollection<Sensor> sensor;
@@ -26,9 +27,17 @@ namespace ProyectoDistriGas.ViewModels
         private string valor;
         private bool isRunning;
         private bool isEnable;
+        private string direccion_IP;
 
         #endregion
         #region propiedades
+        public CilindroGas CilindroGas
+        {
+            get;
+            set;
+        }
+
+
         public ObservableCollection<Sensor> Sensor
         {
             get { return this.sensor; }
@@ -52,6 +61,7 @@ namespace ProyectoDistriGas.ViewModels
             get { return this.isEnable; }
             set { SetValue(ref this.isEnable, value); }
         }
+       
 
 
 
@@ -61,12 +71,14 @@ namespace ProyectoDistriGas.ViewModels
 
         #region constructores
 
-        public VariableViewModel()
+        public VariableViewModel(CilindroGas cilindroGas)
         {
+            this.CilindroGas = cilindroGas;
             this.apiService = new ApiService();
             this.LoadSensor();
             this.Valor = string.Empty;
             IsRunning = true;
+            
 
 
         }
@@ -78,11 +90,12 @@ namespace ProyectoDistriGas.ViewModels
 
         private  async void LoadSensor()
         {
+            await Application.Current.MainPage.DisplayAlert("mensaje", CilindroGas.Direccion_Ip, "Aceptar");
             IsEnable = false;
             IsRunning = true;
          
             var response = await this.apiService.GetListURL<Sensor>(
-                "http://192.168.137.15/");
+                "http://"+CilindroGas.Direccion_Ip+"/");
 
 
             if (!response.IsSuccess)

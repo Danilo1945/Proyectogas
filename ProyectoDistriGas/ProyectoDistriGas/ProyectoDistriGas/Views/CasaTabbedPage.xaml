@@ -6,7 +6,6 @@
             Title="Mi Casa">
     <TabbedPage.Children>
         <tabs:CasaPage/>
-        <tabs:CilindrosPage/>
         <tabs:PedidosPage/>
         
 
