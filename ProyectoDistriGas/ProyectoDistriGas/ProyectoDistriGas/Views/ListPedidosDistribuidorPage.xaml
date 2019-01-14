@@ -1,21 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProyectoDistriGas.Views.CasaPage"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Icon="icon"
-             Title="Casa">
-    <ContentPage.ToolbarItems >
-        <ToolbarItem Text="Nuevo" Clicked="ToolbarItem_Clicked" Command="{Binding NewCasaCommand}"  />
-    </ContentPage.ToolbarItems>
-    <ContentPage.Content >
-        <StackLayout BindingContext="{Binding Casa}">
+             x:Class="ProyectoDistriGas.Views.ListPedidosDistribuidorPage">
+    <ContentPage.Content>
+        <StackLayout BindingContext="{Binding PedidosGenerales}">
+            <Label Text="asd">
+                
+            </Label>
             <ListView 
                 BackgroundColor="Silver"
                 HasUnevenRows="true" 
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
-                ItemsSource="{Binding Casa}"
+                ItemsSource="{Binding PedidosGenerales}"
                 SeparatorVisibility="None"
                 RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
@@ -41,7 +38,7 @@
                                         <Label 
                                             FontAttributes="Bold"
                                             FontSize="Medium" 
-                                            Text="{Binding Direccion}"
+                                            Text="{Binding Id}"
                                             TextColor="Black">
                                         </Label>
 

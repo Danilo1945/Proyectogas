@@ -101,8 +101,6 @@ namespace ProyectoDistriGas.ViewModels
             MainViewModel.GetInstance().Casas = new List<Casa>();
 
             int contador = 0;
-           
-           
             for ( int i=0; i< this.listUsuarios.Count+1;i++)
             {
                 foreach (var item in listUsuarios)

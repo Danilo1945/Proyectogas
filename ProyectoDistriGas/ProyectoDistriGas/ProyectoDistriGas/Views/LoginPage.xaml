@@ -92,6 +92,7 @@
                     <Button
                         BackgroundColor="Purple"
                         BorderRadius="23"
+                        
                         HeightRequest="46"
                         HorizontalOptions="FillAndExpand"
                        IsEnabled="{Binding IsEnable}"

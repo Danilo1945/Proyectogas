@@ -15,7 +15,7 @@ HX711 scale(26, 27);
 float calibration_factor = 8000; // this calibration factor is adjusted according to my load cell
 float units;
 float ounces;
-
+int contadorGeneral=0;
 WiFiServer server(80);// creamos una intancia del servidor con el puerto 80
 int porcentaje=89; // variable del sensor leido
 int ledControl(String command);// Declare functions to be exposed to the API
@@ -23,7 +23,7 @@ int ledControl(String command);// Declare functions to be exposed to the API
 
 void setup()
  {
- 
+ randomSeed(10);
   // Start Serial
   Serial.begin(115200);// iniciamos el puerto serial para que este en el puerto 115200
 
@@ -68,9 +68,22 @@ respuesta = (int) units; // ahora i es 3
   
 return respuesta;
   }
+  int GetRamdom(){
+    
+    int res=0;
+    if(contadorGeneral==3){
+      res =5;
+      contadorGeneral=0;
+    }else{
+     res=random(7,100);
+    }
+    contadorGeneral++;
+     return res;
+  }
 
 void loop() {
-  porcentaje=GetPeso();
+ // porcentaje=GetPeso();
+  porcentaje=GetRamdom();
   WiFiClient client = server.available(); // comprueba si el sendor esta disponible
   if (!client) {
     return;

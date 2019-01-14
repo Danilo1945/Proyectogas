@@ -20,11 +20,22 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public List<Distribuidor> Distribuidores
+        {
+            get;
+            set;
+        }
         public List<CilindroGas> CilindroGas
         {
             get;
             set;
         }
+        public List<PedidosGenerales> PedidosGenerales
+        {
+            get;
+            set;
+        }
+       
         #endregion
 
 
@@ -76,12 +87,21 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public DistribuidorViewModel Distribuidor
+        {
+            get;
+            set;
+        }
+        public ListPedidosDistribuidorViewModel ListPedidosDistribuidor
+        {
+            get;
+            set;
+        }
+        
+        #endregion
 
-
-    #endregion
-
-    #region Constructors
-    public MainViewModel()
+        #region Constructors
+        public MainViewModel()
         {
             instance = this;
          

@@ -30,6 +30,7 @@ namespace ProyectoDistriGas.ViewModels
         private bool isRunning;
         private bool isEnable;
         private List<Usuarios> usuarioLista;
+        private List<Distribuidores> distribuidorLista;
 
 
 
@@ -73,6 +74,7 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public int TipoUsuario;
         public bool IsEnable
         {
             get
@@ -88,8 +90,9 @@ namespace ProyectoDistriGas.ViewModels
         #endregion
 
         #region constructores
-        public LoginViewModel()
+        public LoginViewModel( int tipoUsuario)
         {
+            this.TipoUsuario = tipoUsuario;
             this.configService = new ConfigService();
             this.apiService = new ApiService();
             this.IsRemembered = true;
@@ -99,6 +102,8 @@ namespace ProyectoDistriGas.ViewModels
             this.Password = "0550114748";
            
         }
+
+      
 
         #endregion
         #region comandos
@@ -115,6 +120,8 @@ namespace ProyectoDistriGas.ViewModels
             }
 
         }
+      
+       
 
         private async void login()
         {
@@ -137,57 +144,86 @@ namespace ProyectoDistriGas.ViewModels
             }
 
 
-       
-            string urlBase = configService.GetURLBase();
-            string Serviceprefix = configService.GetServiceprefix();
-            string Controller = "/usuario/index.json";
 
-            var response = await this.apiService.GetList<Usuarios>(
-               urlBase,
-               Serviceprefix,
-               Controller);
+            if (this.TipoUsuario == 1)
+            { 
+                string urlBase = configService.GetURLBase();
+                string Serviceprefix = configService.GetServiceprefix();
+                string Controller = "/usuario/index.json";
+                var response = await this.apiService.GetList<Usuarios>(
+                   urlBase,
+                   Serviceprefix,
+                   Controller);
+                if (!response.IsSuccess)
+                {
 
-            if (!response.IsSuccess)
-            {
-               
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Aceptar");
-                await Application.Current.MainPage.Navigation.PopAsync();
-                return;
-            }
-            this.usuarioLista = (List<Usuarios>)response.Result;
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        response.Message,
+                        "Aceptar");
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                    return;
+                }
+                this.usuarioLista = (List<Usuarios>)response.Result;
+                if (!VerificaSesionUsuario())
+                {
+                    this.Password = string.Empty;
+                }
+                else
+                {
+                    this.IsRunning = true;
+                    this.IsEnable = true;
+                    MainViewModel.GetInstance().Casa = new CasaViewModel();
+                    await Application.Current.MainPage.Navigation.PushAsync(new CasaTabbedPage());
 
-
-            
-            if (!VerificaSesion())
-            {
-                this.Password = string.Empty;
-             
-                
-            }
-            else
-            {
-                this.IsRunning = true;
-                this.IsEnable = true;
-               
-                MainViewModel.GetInstance().Casa = new CasaViewModel();
-                await Application.Current.MainPage.Navigation.PushAsync(new CasaTabbedPage());
+                }
 
             }
+            if (this.TipoUsuario == 2)
+            {
+                string urlBase = configService.GetURLBase();
+                string Serviceprefix = configService.GetServiceprefix();
+                string Controller = "/distribuidor/index.json";
+                var response = await this.apiService.GetList<Distribuidores>(
+                   urlBase,
+                   Serviceprefix,
+                   Controller);
+                if (!response.IsSuccess)
+                {
+
+                    await Application.Current.MainPage.DisplayAlert(
+                        "Error",
+                        response.Message,
+                        "Aceptar");
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                    return;
+                }
+                this.distribuidorLista = (List<Distribuidores>)response.Result;
+                if (!VerificaSesionDistribuidor())
+                {
+                    this.Password = string.Empty;
+                }
+                else
+                {
+                    this.IsRunning = true;
+                    this.IsEnable = true;
+                    MainViewModel.GetInstance().ListPedidosDistribuidor = new ListPedidosDistribuidorViewModel();
+                    await Application.Current.MainPage.Navigation.PushAsync(new ListPedidosDistribuidorPage());
+
+                }
+
+            }
+
+
+
 
             #endregion
            
         }
         #region Funciones
 
-        public bool  VerificaSesion()
+        public bool  VerificaSesionUsuario()
         {
-
-
-
-
             var cont1 = 0;
             var correo = "";
             var password = "";
@@ -220,7 +256,40 @@ namespace ProyectoDistriGas.ViewModels
 
             return res;
         }
+        public bool VerificaSesionDistribuidor()
+        {
+            var cont1 = 0;
+            var correo = "";
+            var password = "";
+            long id = 0;
+            var estado = false;
+            var res = false;
+            for (int i = 0; i < this.distribuidorLista.Count + 1; i++)
+            {
+                foreach (var d1 in this.distribuidorLista)
+                {
+                    if (this.Email == d1.Distribuidor[cont1].Email && this.Password == d1.Distribuidor[cont1].Password)
+                    {
+                        correo = d1.Distribuidor[cont1].Email;
+                        password = d1.Distribuidor[cont1].Password;
+                        res = true;
+                        estado = d1.Distribuidor[cont1].Enable;
+                        id = d1.Distribuidor[cont1].Id;
 
+                    }
+                }
+                cont1 = cont1 = 1; ;
+
+            }
+
+            if (res == true && estado == true)
+            {
+                MainViewModel.GetInstance().Sesion = new Sesion(id, estado, correo, password);
+            }
+
+
+            return res;
+        }
         #endregion
     }
 }
