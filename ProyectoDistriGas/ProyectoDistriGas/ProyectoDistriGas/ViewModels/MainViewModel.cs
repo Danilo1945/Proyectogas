@@ -30,7 +30,7 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
-        public List<PedidosGenerales> PedidosGenerales
+        public List<ListPedidosDistribuidorItemViewModel> PedidosGenerales
         {
             get;
             set;

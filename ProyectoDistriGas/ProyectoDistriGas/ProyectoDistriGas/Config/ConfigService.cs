@@ -9,7 +9,7 @@ namespace ProyectoDistriGas.Config
     
     public class ConfigService
     {
-        public string UrlBase = "http://192.168.123.116";
+        public string UrlBase = "http://192.168.0.129";
         public string Serviceprefix = "/distrigas";
        
 

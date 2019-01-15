@@ -124,6 +124,7 @@ namespace ProyectoDistriGas.ViewModels
 
             this.Casa = new ObservableCollection<CasaItemViewModel>(this.ToLandItemViewModel());
             
+            
             this.IsRefreshing = false;
 
 

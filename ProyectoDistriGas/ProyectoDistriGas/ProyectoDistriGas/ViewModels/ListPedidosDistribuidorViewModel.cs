@@ -19,13 +19,13 @@ namespace ProyectoDistriGas.ViewModels
         private ConfigService configService;
         #endregion
         #region Attributes
-        private ObservableCollection<PedidosGenerales> pedidosGenerales;
+        private ObservableCollection<ListPedidosDistribuidorItemViewModel> pedidosGenerales;
         private bool isRefreshing;
         private string filter;
         private List<PedidosGeneralesObjet> listaPedidos;
         #endregion
         #region Properties
-        public ObservableCollection<PedidosGenerales> PedidosGenerales
+        public ObservableCollection<ListPedidosDistribuidorItemViewModel> PedidosGenerales
         {
             get { return this.pedidosGenerales; }
             set { SetValue(ref this.pedidosGenerales, value); }
@@ -94,14 +94,14 @@ namespace ProyectoDistriGas.ViewModels
          this.listaPedidos = (List<PedidosGeneralesObjet>)response.Result;
 
 
-            MainViewModel.GetInstance().PedidosGenerales = new List<PedidosGenerales>();
-
+            MainViewModel.GetInstance().PedidosGenerales = new List<ListPedidosDistribuidorItemViewModel>();
+            
             int contador = 0;
-            for (int i = 0; i < this.listaPedidos.Count + 1; i++)
+            for (int i = 0; i < this.listaPedidos.Count ; i++)
             {
                 foreach (var item in listaPedidos)
                 {
-                    MainViewModel.GetInstance().PedidosGenerales.Add(new PedidosGenerales()
+                    MainViewModel.GetInstance().PedidosGenerales.Add(new ListPedidosDistribuidorItemViewModel()
                     {
                         Id = item.PedidosGenerales[contador].Id,
                         Fecha=item.PedidosGenerales[contador].Fecha,
@@ -117,24 +117,30 @@ namespace ProyectoDistriGas.ViewModels
             }
 
 
-          //  this.PedidosGenerales = new ObservableCollection<PedidosGenerales>(MainViewModel.GetInstance().PedidosGenerales);
+           this.PedidosGenerales = new ObservableCollection<ListPedidosDistribuidorItemViewModel>(this.ToListGeneralItemViewModel());
 
+            await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    PedidosGenerales[0].Id.ToString(),
+                    "Aceptar");
             this.IsRefreshing = false;
 
 
 
         }
 
-        private IEnumerable<CasaItemViewModel> ToLandItemViewModel()
+        private IEnumerable<ListPedidosDistribuidorItemViewModel> ToListGeneralItemViewModel()
         {
-            return MainViewModel.GetInstance().Casas.Select(l => new CasaItemViewModel
+            return MainViewModel.GetInstance().PedidosGenerales.Select(l => new ListPedidosDistribuidorItemViewModel
             {
+
                 Id = l.Id,
-                Direccion = l.Direccion,
-                Latitud = l.Latitud,
-                Longitud = l.Longitud,
-                Telefono = l.Telefono,
-                UsuarioId = l.UsuarioId
+                Fecha = l.Fecha,
+                Hora = l.Hora,
+                Estado = l.Estado,
+                UsuarioId = l.UsuarioId,
+                Usuario = l.Usuario
+                
 
             });
         }

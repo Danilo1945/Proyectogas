@@ -8,7 +8,7 @@ namespace ProyectoDistriGas.ViewModels
     using System.Threading.Tasks;
     using Models;
 
-    public class ListPedidosDistribuidorItemViewModel:Distribuidor 
+    public class ListPedidosDistribuidorItemViewModel:PedidosGenerales
     {
 
 
