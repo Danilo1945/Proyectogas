@@ -99,18 +99,13 @@ namespace ProyectoDistriGas.ViewModels
                             Casa_Id = it.Casa_Id
                         });
                     }
-                    
-                   
-
+            
                 }
                 contador = contador + 1;
             }
 
 
             this.Cilindro = new ObservableCollection<CilindroGas>(this.ToLandItemViewModel());
-
-
-
 
             await Application.Current.MainPage.DisplayAlert(
                      "mensaje",

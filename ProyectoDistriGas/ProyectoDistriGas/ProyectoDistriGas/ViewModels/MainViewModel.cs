@@ -97,7 +97,13 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public DetallePedidoGeneralViewModel DetallePedidoGeneral
+        {
+            get;
+            set;
+        }
         
+
         #endregion
 
         #region Constructors

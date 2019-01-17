@@ -23,7 +23,7 @@
                                 HasShadow="true"
                                 Margin="5">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectCasaCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding SelectPedidoGeneralCommand}"/>
                                 </Frame.GestureRecognizers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>

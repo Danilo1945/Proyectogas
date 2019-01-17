@@ -140,8 +140,7 @@ namespace ProyectoDistriGas.ViewModels
                 Estado = l.Estado,
                 UsuarioId = l.UsuarioId,
                 Usuario = l.Usuario
-                
-
+              
             });
         }
 
