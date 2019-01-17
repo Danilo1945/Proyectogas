@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoDistriGas.Models
 {
-    public class Usuario
+    public class Distribuidor
     {
         [JsonProperty("id")]
         public long Id { get; set; }
@@ -28,16 +28,16 @@ namespace ProyectoDistriGas.Models
         public string Direccion { get; set; }
 
         [JsonProperty("created")]
-        public DateTimeOffset? Created { get; set; }
+        public DateTimeOffset Created { get; set; }
 
         [JsonProperty("modified")]
-        public DateTimeOffset? Modified { get; set; }
+        public DateTimeOffset Modified { get; set; }
 
         [JsonProperty("latitud")]
-        public double Latitud { get; set; }
+        public double? Latitud { get; set; }
 
         [JsonProperty("longitud")]
-        public double Longitud { get; set; }
+        public double? Longitud { get; set; }
 
         [JsonProperty("enable")]
         public bool Enable { get; set; }
@@ -47,17 +47,11 @@ namespace ProyectoDistriGas.Models
         [JsonProperty("password")]
         public string Password { get; set; }
 
-        [JsonProperty("pedidos_generales")]
-        public List<PedidosGenerales> PedidosGenerales { get; set; }
-
         [JsonProperty("pedidos")]
         public List<Pedidos> Pedidos { get; set; }
 
-        [JsonProperty("casa")]
-        public List<Casa> Casa { get; set; }
+        [JsonProperty("calificacion_distribuidor")]
+        public List<CalificacionDistribuidor> CalificacionDistribuidor { get; set; }
 
-        [JsonProperty("calificacion_usuario")]
-        public List<object> CalificacionUsuario { get; set; }
     }
-
 }

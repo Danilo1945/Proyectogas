@@ -54,11 +54,28 @@ namespace ProyectoDistriGas.ViewModels
 
 
         }
+        public ICommand DistribuidorCommand
+        {
+            get
+            {
+                // recibe el evento y lo transfiere al metodo login
+                return new RelayCommand(Distribuidor);
+            }
+
+
+        }
+        
 
         private async void Usuario()
         {
            
-            MainViewModel.GetInstance().Login = new LoginViewModel();
+            MainViewModel.GetInstance().Login = new LoginViewModel(1);
+            await Application.Current.MainPage.Navigation.PushAsync(new LoginPage());
+        }
+        private async void Distribuidor()
+        {
+
+            MainViewModel.GetInstance().Login = new LoginViewModel(2);
             await Application.Current.MainPage.Navigation.PushAsync(new LoginPage());
         }
         #endregion

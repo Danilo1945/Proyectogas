@@ -9,7 +9,6 @@
         <ToolbarItem Text="Nuevo" Clicked="ToolbarItem_Clicked" Command="{Binding NewCasaCommand}"  />
     </ContentPage.ToolbarItems>
     <ContentPage.Content >
-
         <StackLayout BindingContext="{Binding Casa}">
             <ListView 
                 BackgroundColor="Silver"

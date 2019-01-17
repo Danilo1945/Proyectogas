@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoDistriGas.Models
 {
-   public class Pedido
+   public class Pedidos
     {
         [JsonProperty("id")]
         public long Id { get; set; }

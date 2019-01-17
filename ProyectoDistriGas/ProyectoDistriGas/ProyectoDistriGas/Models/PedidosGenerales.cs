@@ -13,10 +13,10 @@ namespace ProyectoDistriGas.Models
         public long Id { get; set; }
 
         [JsonProperty("fecha")]
-        public DateTimeOffset Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         [JsonProperty("hora")]
-        public DateTimeOffset Hora { get; set; }
+        public DateTime Hora { get; set; }
 
         [JsonProperty("estado")]
         
@@ -24,5 +24,7 @@ namespace ProyectoDistriGas.Models
 
         [JsonProperty("usuario_id")]
         public long UsuarioId { get; set; }
+        [JsonProperty("usuario")]
+        public Usuario Usuario { get; set; }
     }
 }

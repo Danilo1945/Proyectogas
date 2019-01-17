@@ -27,6 +27,7 @@
                 <Button
                         BackgroundColor="Blue"
                         BorderRadius="23"
+                        Command="{Binding DistribuidorCommand}"
                         HeightRequest="46"
                         HorizontalOptions="FillAndExpand"
                        
