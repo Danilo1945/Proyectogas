@@ -1,5 +1,4 @@
-// Arduino pin 27 -> HX711 CLK
-//Arduino pin 26 -> HX711 DOUT
+
 // Arduino pin 5V -> HX711 VCC
 // Arduino pin GND -> HX711 GND 
 
@@ -7,8 +6,8 @@
 #include <aREST.h>
 #include "HX711.h"
 aREST rest = aREST(); // instanciamos el objeto
-const char* ssid = "Dan";
-const char* password = "23456789";
+const char* ssid = "LUIS";
+const char* password = "1234567890";
 
 //para hx711
 HX711 scale(26, 27);
@@ -69,8 +68,23 @@ respuesta = (int) units; // ahora i es 3
 return respuesta;
   }
 
+int GetCantidadGas(){
+  int respuesta=33;
+  ///aqui programacion 
+
+
+
+
+
+  
+  return respuesta;
+  }
+
+
+  
+
 void loop() {
-  porcentaje=GetPeso();
+  porcentaje=GetCantidadGas();
   WiFiClient client = server.available(); // comprueba si el sendor esta disponible
   if (!client) {
     return;
