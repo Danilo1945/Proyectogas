@@ -102,7 +102,12 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
-        
+        public EntregasViewModel Entregas
+        {
+            get;
+            set;
+        }
+
 
         #endregion
 

@@ -98,8 +98,8 @@ namespace ProyectoDistriGas.ViewModels
             this.IsRemembered = true;
             this.IsRunning = false;
             this.IsEnable = true;
-            this.Email = "liliana.tapia1@utc.edu.ec";
-            this.Password = "0503950131";
+            this.Email = "danilomoya19@ymail.com";
+            this.Password = "0550114748";
            
         }
 
