@@ -11,7 +11,7 @@
             <StackLayout
             Padding="5">
                 <Image
-                    Source="onu"
+                    Source="logo_utc"
                     WidthRequest="200">
                 </Image>
                 <Grid

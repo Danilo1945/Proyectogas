@@ -1,4 +1,5 @@
-
+// Arduino pin 27 -> HX711 CLK
+//Arduino pin 26 -> HX711 DOUT
 // Arduino pin 5V -> HX711 VCC
 // Arduino pin GND -> HX711 GND 
 
@@ -6,15 +7,15 @@
 #include <aREST.h>
 #include "HX711.h"
 aREST rest = aREST(); // instanciamos el objeto
-const char* ssid = "LUIS";
-const char* password = "1234567890";
+const char* ssid = "Jorge";
+const char* password = "12345678";
 
 //para hx711
 HX711 scale(26, 27);
 float calibration_factor = 8000; // this calibration factor is adjusted according to my load cell
 float units;
 float ounces;
-
+int contadorGeneral=0;
 WiFiServer server(80);// creamos una intancia del servidor con el puerto 80
 int porcentaje=89; // variable del sensor leido
 int ledControl(String command);// Declare functions to be exposed to the API
@@ -22,7 +23,7 @@ int ledControl(String command);// Declare functions to be exposed to the API
 
 void setup()
  {
- 
+ randomSeed(10);
   // Start Serial
   Serial.begin(115200);// iniciamos el puerto serial para que este en el puerto 115200
 
@@ -67,24 +68,22 @@ respuesta = (int) units; // ahora i es 3
   
 return respuesta;
   }
-
-int GetCantidadGas(){
-  int respuesta=33;
-  ///aqui programacion 
-
-
-
-
-
-  
-  return respuesta;
+  int GetRamdom(){
+    
+    int res=0;
+    if(contadorGeneral==3){
+      res =5;
+      contadorGeneral=0;
+    }else{
+     res=random(7,100);
+    }
+    contadorGeneral++;
+     return res;
   }
 
-
-  
-
 void loop() {
-  porcentaje=GetCantidadGas();
+ // porcentaje=GetPeso();
+  porcentaje=GetRamdom();
   WiFiClient client = server.available(); // comprueba si el sendor esta disponible
   if (!client) {
     return;
