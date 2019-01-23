@@ -10,7 +10,7 @@ namespace ProyectoDistriGas.Models
    public class Pedidos
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int  Id { get; set; }
 
         [JsonProperty("fecha")]
         public DateTimeOffset Fecha { get; set; }
@@ -20,7 +20,7 @@ namespace ProyectoDistriGas.Models
 
         [JsonProperty("estado")]
         
-        public bool Estado { get; set; }
+        public string Estado { get; set; }
 
         [JsonProperty("calificacion_usuario")]
        

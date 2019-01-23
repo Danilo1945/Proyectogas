@@ -46,11 +46,11 @@ namespace ProyectoDistriGas.Services
             };
         }
      
-        public async Task<TokenResponse> GetToken(
+       public async Task<TokenResponse> GetToken(
             string urlBase,
             string username,
             string password)
-            {
+                              {
             try
             {
                 var client = new HttpClient();
@@ -183,11 +183,7 @@ namespace ProyectoDistriGas.Services
                         Message = result,
                     };
                 }
-
-               
-
-
-
+                
                  var list = JsonConvert.DeserializeObject<List<T>>("["+result+"]");
               
                 return new Response
@@ -376,13 +372,13 @@ namespace ProyectoDistriGas.Services
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
-                var newRecord = JsonConvert.DeserializeObject<T>(result);
+               // var newRecord = JsonConvert.DeserializeObject<T>(result);
 
                 return new Response
                 {
                     IsSuccess = true,
-                    Message = "Record added OK",
-                    Result = newRecord,
+                    Message = "Pedido Registrado",
+                    Result = result,
                 };
             }
             catch (Exception ex)
@@ -488,6 +484,53 @@ namespace ProyectoDistriGas.Services
                     Message = ex.Message,
                 };
             }
+        }
+        public async Task<Response> Delete(
+
+            string urlBase,
+            string servicePrefix,
+            string controller,
+           
+           string id)
+
+
+        {
+            try
+            {
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+
+                var url = string.Format(
+                    "{0}{1}/{2}",
+                    servicePrefix,
+                    controller,
+                     id+ ".json");
+                var response = await client.DeleteAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var error = JsonConvert.DeserializeObject<Response>(result);
+                    error.IsSuccess = false;
+                    return error;
+                }
+
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message="Completo",
+                    Result= JsonConvert.DeserializeObject<Response>(result)
+            };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+
         }
     }
 }

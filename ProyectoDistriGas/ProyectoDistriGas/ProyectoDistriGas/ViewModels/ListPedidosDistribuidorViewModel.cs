@@ -96,11 +96,20 @@ namespace ProyectoDistriGas.ViewModels
 
             MainViewModel.GetInstance().PedidosGenerales = new List<ListPedidosDistribuidorItemViewModel>();
             
+
+
+
+
             int contador = 0;
-            for (int i = 0; i < this.listaPedidos.Count ; i++)
+            int max = listaPedidos[0].PedidosGenerales.Count;
+
+            if (max > 0) {
+
+            for (int i = 0; i <max; i++)
             {
                 foreach (var item in listaPedidos)
                 {
+                    max = item.PedidosGenerales.Count;
                     MainViewModel.GetInstance().PedidosGenerales.Add(new ListPedidosDistribuidorItemViewModel()
                     {
                         Id = item.PedidosGenerales[contador].Id,
@@ -119,13 +128,20 @@ namespace ProyectoDistriGas.ViewModels
 
            this.PedidosGenerales = new ObservableCollection<ListPedidosDistribuidorItemViewModel>(this.ToListGeneralItemViewModel());
 
-            await Application.Current.MainPage.DisplayAlert(
+          /*  await Application.Current.MainPage.DisplayAlert(
                     "Error",
                     PedidosGenerales[0].Id.ToString(),
-                    "Aceptar");
+                    "Aceptar");  */
             this.IsRefreshing = false;
 
-
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   "No existen Pedidos por el momento",
+                   "Aceptar");
+            }
 
         }
 
