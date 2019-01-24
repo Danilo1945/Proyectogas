@@ -16,9 +16,10 @@ namespace ProyectoDistriGas.Views
     {
         public CasaTabbedPage()
         {
-
+            
             InitializeComponent();
-           
+       
+
         }
     }
 }

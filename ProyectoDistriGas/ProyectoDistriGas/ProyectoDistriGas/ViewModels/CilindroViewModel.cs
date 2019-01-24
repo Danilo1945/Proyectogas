@@ -81,36 +81,49 @@ namespace ProyectoDistriGas.ViewModels
             MainViewModel.GetInstance().CilindroGas = new List<CilindroGas>();
             
 
-            int contador = 0;
 
-
-            for (int i = 0; i < this.Casa.Count ; i++)
+            if (this.Casa[0].Casa.CilindroGas.Count > 0)
             {
-                foreach (var item in this.Casa)
+                int contador = 0;
+
+
+                for (int i = 0; i < this.Casa[0].Casa.CilindroGas.Count; i++)
                 {
-                    foreach (var it in item.Casa.CilindroGas)
+                    foreach (var item in this.Casa)
                     {
-                        MainViewModel.GetInstance().CilindroGas.Add(new CilindroGas()
+                        foreach (var it in item.Casa.CilindroGas)
                         {
-                            Id = it.Id,
-                            Color = it.Color,
-                            Detalle = it.Detalle,
-                            Direccion_Ip = it.Direccion_Ip,
-                            Casa_Id = it.Casa_Id
-                        });
+                            MainViewModel.GetInstance().CilindroGas.Add(new CilindroGas()
+                            {
+                                Id = it.Id,
+                                Color = it.Color,
+                                Detalle = it.Detalle,
+                                Direccion_Ip = it.Direccion_Ip,
+                                Casa_Id = it.Casa_Id
+                            });
+                        }
+
                     }
-            
+                    contador = contador + 1;
                 }
-                contador = contador + 1;
+
+
+                this.Cilindro = new ObservableCollection<CilindroGas>(this.ToLandItemViewModel());
+
+                await Application.Current.MainPage.DisplayAlert(
+                         "mensaje",
+                        Casas.Direccion.ToString(),
+                         "Aceptar");
+
             }
+            else
+            {
 
-
-            this.Cilindro = new ObservableCollection<CilindroGas>(this.ToLandItemViewModel());
-
-            await Application.Current.MainPage.DisplayAlert(
-                     "mensaje",
-                    Casas.Direccion.ToString(),
-                     "Aceptar");
+                await Application.Current.MainPage.DisplayAlert(
+                         "mensaje",
+                        "Aun no tienes registrados cilindros de GLP",
+                         "Aceptar");
+            }
         }
 
         private IEnumerable<CilindroGas> ToLandItemViewModel()

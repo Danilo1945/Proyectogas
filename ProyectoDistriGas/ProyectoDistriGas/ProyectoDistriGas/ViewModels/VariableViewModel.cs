@@ -12,13 +12,16 @@ namespace ProyectoDistriGas.ViewModels
     using Xamarin.Forms;
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
+    using Config;
 
     public class VariableViewModel: BaseViewModel
     {
         #region Services
         private ApiService apiService;
+       
+        private ConfigService configService;
         #endregion
-      
+
 
         #region Atributos
         private ObservableCollection<Sensor> sensor;
@@ -73,6 +76,8 @@ namespace ProyectoDistriGas.ViewModels
 
         public VariableViewModel(CilindroGas cilindroGas)
         {
+            this.configService = new ConfigService();
+           
             this.CilindroGas = cilindroGas;
             this.apiService = new ApiService();
             this.LoadSensor();
@@ -90,6 +95,7 @@ namespace ProyectoDistriGas.ViewModels
 
         private  async void LoadSensor()
         {
+           
             await Application.Current.MainPage.DisplayAlert("mensaje", CilindroGas.Direccion_Ip, "Aceptar");
             IsEnable = false;
             IsRunning = true;
@@ -114,9 +120,15 @@ namespace ProyectoDistriGas.ViewModels
             int porcentaje = list.Variable.Porcentaje;
 
             await Application.Current.MainPage.DisplayAlert("Ecaner Completo", porcentaje.ToString(), "Aceptar");
-            this.Valor ="GLP= "+ porcentaje.ToString()+" %";
+            this.Valor = "GLP= " + porcentaje.ToString() + " %";
+            
+            //int vaGLP = 4;
+           // this.Valor ="GLP= " + vaGLP + " %";
             IsRunning = false;
             IsEnable = true;
+
+            CompruebaGLP(porcentaje);
+
         }
 
 
@@ -146,6 +158,67 @@ namespace ProyectoDistriGas.ViewModels
         }
 
 
+        #endregion
+        #region Funciones
+        public async void CompruebaGLP(int PorcentajeGLP)
+        {
+
+
+            DateTime fechaHoy = DateTime.Now;
+
+
+            string fecha = fechaHoy.Year.ToString() + "-" + fechaHoy.Month.ToString() + "-" + fechaHoy.Day.ToString();
+
+            string hora = fechaHoy.Hour.ToString() + ":" + fechaHoy.Minute.ToString() + ":" + fechaHoy.Second.ToString();
+            bool estado = false;
+            int usuarioid = (int)MainViewModel.GetInstance().Sesion.Id;
+            if (PorcentajeGLP <= 5)
+            {
+                PedidosGenerales pedidoGeneral = new PedidosGenerales();
+
+
+                /*  await Application.Current.MainPage.DisplayAlert(
+                             "mensaje",
+                              usuarioid,
+                             "Aceptar"
+                             );*/
+
+                pedidoGeneral = new PedidosGenerales
+                {
+                    Fecha = fechaHoy,
+                    Hora = fechaHoy,
+                    Estado = estado,
+                    UsuarioId= usuarioid
+                };
+
+
+
+                string urlBase = configService.GetURLBase();
+                string Serviceprefix = configService.GetServiceprefix();
+
+                string Controller = "/pedidos-generales/add.json";
+
+               
+
+                var resultadoAdd = await this.apiService.Post<PedidosGenerales>(urlBase, Serviceprefix, Controller, pedidoGeneral);
+                await Application.Current.MainPage.DisplayAlert(
+                           "Mensaje",
+                          resultadoAdd.Message,
+                           "Aceptar");
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+        }
         #endregion
 
     }

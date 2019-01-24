@@ -35,7 +35,11 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
-       
+        public List<Pedidos> Pedidos
+        {
+            get;
+            set;
+        }
         #endregion
 
 
@@ -103,6 +107,11 @@ namespace ProyectoDistriGas.ViewModels
             set;
         }
         public EntregasViewModel Entregas
+        {
+            get;
+            set;
+        }
+        public PedidoViewModel Pedido
         {
             get;
             set;

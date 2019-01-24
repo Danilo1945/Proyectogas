@@ -29,6 +29,8 @@ namespace ProyectoDistriGas.ViewModels
         private bool isRefreshing;
         private string filter;
         private List<UsuarioObjet> listUsuarios;
+        private ObservableCollection<Pedidos> pedidoList;
+     
         #endregion
 
         #region Properties
@@ -36,6 +38,11 @@ namespace ProyectoDistriGas.ViewModels
         {
             get { return this.casa; }
             set { SetValue(ref this.casa, value); }
+        }
+        public ObservableCollection<Pedidos> PedidoList
+        {
+            get { return this.pedidoList; }
+            set { SetValue(ref this.pedidoList, value); }
         }
 
         public bool IsRefreshing
@@ -59,11 +66,13 @@ namespace ProyectoDistriGas.ViewModels
 
         public CasaViewModel()
         {
+          
+
             this.configService = new ConfigService();
             this.apiService = new ApiService();
             this.LoadCasas();
            
-            
+
         }
        
         #endregion
@@ -77,6 +86,9 @@ namespace ProyectoDistriGas.ViewModels
                      "mensaje",
                      MainViewModel.GetInstance().Sesion.GetId().ToString(),
                      "Aceptar");
+
+
+
             this.IsRefreshing = true;
             string urlBase = configService.GetURLBase();
             string Serviceprefix = configService.GetServiceprefix();
@@ -99,35 +111,84 @@ namespace ProyectoDistriGas.ViewModels
             }
           this.listUsuarios = (List<UsuarioObjet>)response.Result;
             MainViewModel.GetInstance().Casas = new List<Casa>();
+            MainViewModel.GetInstance().Pedidos = new List<Pedidos>();
 
-            int contador = 0;
-            for ( int i=0; i< this.listUsuarios.Count+1;i++)
+            if (this.listUsuarios[0].Usuario.Casa.Count >0)
             {
-                foreach (var item in listUsuarios)
+                int contador = 0;
+                for (int i = 0; i < this.listUsuarios[0].Usuario.Casa.Count; i++)
                 {
-                    MainViewModel.GetInstance().Casas.Add(new Casa() {
-                        Id = item.Usuario.Casa[contador].Id,
-                        Direccion = item.Usuario.Casa[contador].Direccion,
-                        Latitud = item.Usuario.Casa[contador].Latitud,
-                        Longitud = item.Usuario.Casa[contador].Longitud,
-                        Telefono = item.Usuario.Casa[contador].Telefono,
-                        UsuarioId = item.Usuario.Casa[contador].UsuarioId
+                    foreach (var item in listUsuarios)
+                    {
+                        MainViewModel.GetInstance().Casas.Add(new Casa()
+                        {
+                            Id = item.Usuario.Casa[contador].Id,
+                            Direccion = item.Usuario.Casa[contador].Direccion,
+                            Latitud = item.Usuario.Casa[contador].Latitud,
+                            Longitud = item.Usuario.Casa[contador].Longitud,
+                            Telefono = item.Usuario.Casa[contador].Telefono,
+                            UsuarioId = item.Usuario.Casa[contador].UsuarioId
 
-                    });
-                  
+                        });
+
+
+                    }
+                    contador = contador + 1;
                 }
-                contador = contador + 1;
+
+
+                int contador2 = 0;
+                for (int i = 0; i < this.listUsuarios[0].Usuario.Pedidos.Count; i++)
+                {
+                    foreach (var item2 in listUsuarios)
+                    {
+                        string estado = "";
+                        if (item2.Usuario.Pedidos[contador2].Estado == "False")
+                        {
+                            estado = "Pendiente";
+                        }
+                        else
+                        {
+                            estado = "Atendido";
+                        }
+
+
+                        MainViewModel.GetInstance().Pedidos.Add(new Pedidos
+                        {
+                            Id = item2.Usuario.Pedidos[contador2].Id,
+                            Fecha = item2.Usuario.Pedidos[contador2].Fecha,
+                            Hora = item2.Usuario.Pedidos[contador2].Hora,
+                            Estado = estado,
+                            CalificacionUsuario = item2.Usuario.Pedidos[contador2].CalificacionUsuario,
+                            CalificacionDistribuidor = item2.Usuario.Pedidos[contador2].CalificacionDistribuidor,
+                            UsuarioId = item2.Usuario.Pedidos[contador2].UsuarioId,
+                            DistribuidorId = item2.Usuario.Pedidos[contador2].DistribuidorId
+
+                        });
+
+
+
+                    }
+                    contador2 = contador2 + 1;
+                }
+                this.Casa = new ObservableCollection<CasaItemViewModel>(this.ToLandItemViewModel());
+                this.PedidoList = new ObservableCollection<Pedidos>(MainViewModel.GetInstance().Pedidos);
+
+                this.IsRefreshing = false;
+                MainViewModel.GetInstance().Pedido = new PedidoViewModel(); //instancio pedidos
+
+
             }
-            
-           
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Aun no tienes registrado una casa",
+                    "Aceptar");
+                this.IsRefreshing = false;
+            }
 
-
-            this.Casa = new ObservableCollection<CasaItemViewModel>(this.ToLandItemViewModel());
-            
-            
-            this.IsRefreshing = false;
-
-
+        
 
         }
 

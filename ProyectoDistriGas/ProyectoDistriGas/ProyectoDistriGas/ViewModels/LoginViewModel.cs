@@ -168,14 +168,19 @@ namespace ProyectoDistriGas.ViewModels
                 if (!VerificaSesionUsuario())
                 {
                     this.Password = string.Empty;
+                    await Application.Current.MainPage.DisplayAlert(
+                   "Error",
+                   "Usuario o contraseña incorrectos",
+                   "Aceptar");
                 }
                 else
                 {
                     this.IsRunning = true;
                     this.IsEnable = true;
                     MainViewModel.GetInstance().Casa = new CasaViewModel();
+              
                     await Application.Current.MainPage.Navigation.PushAsync(new CasaTabbedPage());
-
+                   
                 }
 
             }
@@ -202,14 +207,19 @@ namespace ProyectoDistriGas.ViewModels
                 if (!VerificaSesionDistribuidor())
                 {
                     this.Password = string.Empty;
+                    await Application.Current.MainPage.DisplayAlert(
+                  "Error",
+                  "Usuario o contraseña incorrectos",
+                  "Aceptar");
                 }
                 else
                 {
                     this.IsRunning = true;
                     this.IsEnable = true;
                     MainViewModel.GetInstance().ListPedidosDistribuidor = new ListPedidosDistribuidorViewModel();
+                  
                     await Application.Current.MainPage.Navigation.PushAsync(new ListPedidosDistribuidorPage());
-
+                 
                 }
 
             }
@@ -230,7 +240,7 @@ namespace ProyectoDistriGas.ViewModels
             long id=0;
             var estado = false;
             var res = false;
-            for (int i = 0; i < this.usuarioLista.Count + 1; i++)
+            for (int i = 0; i < this.usuarioLista[0].Usuario.Count; i++)
             {
                 foreach (var d1 in this.usuarioLista)
                 {

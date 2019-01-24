@@ -4,10 +4,206 @@
              x:Class="ProyectoDistriGas.Views.PedidosPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Icon="icon"
-             Title="Pedidos">
+             Title="Pedidos Realizados">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="pedidos" />
+        <StackLayout BindingContext="{Binding Casa}">
+           
+            <ListView 
+                BackgroundColor="Silver"
+                HasUnevenRows="true" 
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                ItemsSource="{Binding PedidoList}"
+                SeparatorVisibility="None"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                CornerRadius="20"
+                                HasShadow="true"
+                                Margin="5">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectCasaCommand}"/>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackLayout 
+                                        Grid.Column="1"
+                                        VerticalOptions="Center">
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+
+                                            </Grid.ColumnDefinitions>
+                                            <Label 
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Código:"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Id}"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text=" "
+                                            TextColor="Black">
+                                            </Label>
+
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="3"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Fecha:  "
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="4"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Fecha.Year}"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="5"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="/"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="6"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Fecha.Month}"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="7"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="/"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="8"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Fecha.Day}"
+                                            TextColor="Black">
+                                            </Label>
+
+                                        </Grid>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+                                                <ColumnDefinition Width="auto"/>
+
+                                            </Grid.ColumnDefinitions>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="0"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Hora:  "
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="1"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Hora.Hour}"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="2"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text=":"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="3"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Fecha.Minute}"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="4"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="Estado:"
+                                            TextColor="Black">
+                                            </Label>
+                                            <Label 
+                                             Grid.Row="0"
+                                              Grid.Column="5"
+                                            FontAttributes="Bold"
+                                            FontSize="Medium" 
+                                            Text="{Binding Estado}"
+                                            TextColor="Black">
+                                            </Label>
+
+
+
+                                        </Grid>
+
+
+
+
+
+                                    </StackLayout>
+                                    <Image 
+                                        Grid.Column="2"
+                                        HorizontalOptions="End" 
+                                        Source="ic_chevron_right">
+                                    </Image>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
