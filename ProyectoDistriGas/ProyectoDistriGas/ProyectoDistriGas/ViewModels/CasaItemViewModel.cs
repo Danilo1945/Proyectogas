@@ -27,6 +27,7 @@ namespace ProyectoDistriGas.ViewModels
         private async void SelectCasa()
         {
             MainViewModel.GetInstance().Cilindro = new CilindroViewModel(this);
+            MainViewModel.GetInstance().CasaSelected = (int)this.Id;
             await Application.Current.MainPage.Navigation.PushAsync(new CilindrosPage());
         }
         #endregion

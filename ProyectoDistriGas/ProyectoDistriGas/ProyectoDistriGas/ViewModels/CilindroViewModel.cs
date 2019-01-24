@@ -91,17 +91,16 @@ namespace ProyectoDistriGas.ViewModels
                 {
                     foreach (var item in this.Casa)
                     {
-                        foreach (var it in item.Casa.CilindroGas)
-                        {
+                        
                             MainViewModel.GetInstance().CilindroGas.Add(new CilindroGas()
                             {
-                                Id = it.Id,
-                                Color = it.Color,
-                                Detalle = it.Detalle,
-                                Direccion_Ip = it.Direccion_Ip,
-                                Casa_Id = it.Casa_Id
+                                Id = item.Casa.CilindroGas[contador].Id,
+                                Color = item.Casa.CilindroGas[contador].Color,
+                                Detalle = item.Casa.CilindroGas[contador].Detalle,
+                                Direccion_Ip = item.Casa.CilindroGas[contador].Direccion_Ip,
+                                Casa_Id = item.Casa.CilindroGas[contador].Casa_Id
                             });
-                        }
+                       
 
                     }
                     contador = contador + 1;

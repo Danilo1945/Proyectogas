@@ -30,7 +30,7 @@ namespace ProyectoDistriGas.ViewModels
         {
             
             MainViewModel.GetInstance().DetalleCilindro = new DetalleClilindroViewModel(this);
-            MainViewModel.GetInstance().CasaSelected = this.Id;
+            
             await Application.Current.MainPage.Navigation.PushAsync(new DetalleCilindroPage());
         }
         #endregion
