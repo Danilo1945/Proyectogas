@@ -99,18 +99,12 @@ namespace ProyectoDistriGas.ViewModels
                            "Mensaje",
                           resultadoAdd.Message,
                            "Aceptar");
+            this.Telefono = string.Empty;
+            this.Direccion = string.Empty;
 
-
-
-
-
-
-
-
-
-
+            
 
             }
             #endregion
-        }
+    }
 }

@@ -377,7 +377,7 @@ namespace ProyectoDistriGas.Services
                 return new Response
                 {
                     IsSuccess = true,
-                    Message = "Pedido Registrado",
+                    Message = "Guardado Con Exito",
                     Result = result,
                 };
             }

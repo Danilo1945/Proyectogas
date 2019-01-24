@@ -20,6 +20,11 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
+        public int CasaSelected
+        {
+            get;
+            set;
+        }
         public List<Distribuidor> Distribuidores
         {
             get;

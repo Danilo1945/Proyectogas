@@ -160,6 +160,13 @@ namespace ProyectoDistriGas.ViewModels
           
             
         }
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(loadCilindro);
+            }
+        }
         #endregion
 
 
