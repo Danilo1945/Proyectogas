@@ -3,28 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoDistriGas.Views.InicioPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Icon="icon"
              Title="Inicio">
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding Inicio}">
-
+           
             <StackLayout
-                    Margin="40,0"
-                    Orientation="Horizontal"
-                    VerticalOptions="CenterAndExpand">
-                <Button
+                   Padding="10"
+                    Orientation="Vertical"
+                   >
+                <StackLayout
+                     
+                  Orientation="Vertical">
+                    <Image
+                    Source="icono"
+                    WidthRequest="200">
+                    </Image>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"   VerticalOptions="CenterAndExpand">
+                    <Button
                        
                         BackgroundColor="Blue"
                         BorderRadius="23"
                         Command="{Binding UsuarioCommand}"
                         
-                        HeightRequest="46"
+                        HeightRequest="20"
                         HorizontalOptions="FillAndExpand"
                        IsEnabled="{Binding IsEnable}"
                         
                         Text="Usuario"
                         TextColor="White">
-                </Button>
-                <Button
+                    </Button>
+                    <Button
                         BackgroundColor="Blue"
                         BorderRadius="23"
                         Command="{Binding DistribuidorCommand}"
@@ -33,7 +43,9 @@
                        
                         Text="Distribuidor"
                         TextColor="White">
-                </Button>
+                    </Button>
+                </StackLayout>
+                
             </StackLayout>
         </ScrollView>
         

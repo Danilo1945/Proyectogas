@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoDistriGas.Views.CasaPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Icon="icon"
+             Icon="ic_home"
              Title="Casa">
     <ContentPage.ToolbarItems >
         <ToolbarItem Text="Nuevo" Clicked="ToolbarItem_Clicked" Command="{Binding NewCasaCommand}"  />
