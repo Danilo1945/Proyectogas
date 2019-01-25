@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoDistriGas.Views.FinalizarPedidoPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Icon="icon"
+             Title="DetallePedido">
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding FienalizarPedido}">
+            <StackLayout
+                Padding="5">
+                <Grid HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="PEDIDO:"
+                    TextColor="Black">
+                    </Label>
+                    <Label
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="{Binding IdP}"
+                    TextColor="Black">
+                    </Label>
+                </Grid>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="Cédula:"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        Text="{Binding  Cedula,Mode=TwoWay}"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Text="Nombres:"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        FontAttributes="Bold"
+                        Text="{Binding  Nombres,Mode=TwoWay}"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="Apellidos:"
+                        TextColor="Black">
+                    </Label>
+
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        FontAttributes="Bold"
+                        Text="{Binding Apellidos,Mode=TwoWay}"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="Celular:"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        FontAttributes="Bold"
+                        Text="{Binding Celular,Mode=TwoWay}"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Text="Dirección:"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        FontAttributes="Bold"
+                        Text="{Binding Direccion,Mode=TwoWay}"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        Text="Email:"
+                        TextColor="Black">
+                    </Label>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="5"
+                        FontAttributes="Bold"
+                        Text="{Binding Email,Mode=TwoWay}"
+                        TextColor="Black">
+                    </Label>
+
+                    <Button
+                        Grid.Column="1"
+                        Grid.Row="8"
+                        BackgroundColor="Navy"
+                        BorderRadius="23"
+                        Command="{Binding FinalizarPedidoCommand}"
+                        
+                        HeightRequest="46"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnable}"
+                        
+                        Text="Finalizar Pedido"
+                        TextColor="White">
+                    </Button>
+
+
+                </Grid>
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

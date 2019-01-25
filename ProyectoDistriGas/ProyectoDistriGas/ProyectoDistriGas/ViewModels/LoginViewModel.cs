@@ -12,6 +12,7 @@ namespace ProyectoDistriGas.ViewModels
     using Config;
     using System.Collections.Generic;
     using Models;
+    using Xamarin.Forms.PlatformConfiguration;
 
     public class LoginViewModel: BaseViewModel
     {
@@ -98,8 +99,18 @@ namespace ProyectoDistriGas.ViewModels
             this.IsRemembered = true;
             this.IsRunning = false;
             this.IsEnable = true;
-            this.Email = "danilomoya19@ymail.com";
-            this.Password = "0550114748";
+            if(this.TipoUsuario == 1)
+            {
+                this.Email = "danilomoya19@ymail.com";
+                this.Password = "0550114748";
+
+            }
+            else
+            {
+                this.Email = "liliana.tapia1@utc.edu.ec";
+                this.Password = "0503950131";
+            }
+          
            
         }
 
@@ -125,6 +136,7 @@ namespace ProyectoDistriGas.ViewModels
 
         private async void login()
         {
+            
             this.IsRunning = true;
             if (string.IsNullOrWhiteSpace(this.Email))
             {
@@ -146,7 +158,8 @@ namespace ProyectoDistriGas.ViewModels
 
 
             if (this.TipoUsuario == 1)
-            { 
+            {
+                
                 string urlBase = configService.GetURLBase();
                 string Serviceprefix = configService.GetServiceprefix();
                 string Controller = "/usuario/index.json";
@@ -186,6 +199,7 @@ namespace ProyectoDistriGas.ViewModels
             }
             if (this.TipoUsuario == 2)
             {
+               
                 string urlBase = configService.GetURLBase();
                 string Serviceprefix = configService.GetServiceprefix();
                 string Controller = "/distribuidor/index.json";
@@ -217,9 +231,9 @@ namespace ProyectoDistriGas.ViewModels
                     this.IsRunning = true;
                     this.IsEnable = true;
                     MainViewModel.GetInstance().ListPedidosDistribuidor = new ListPedidosDistribuidorViewModel();
-                  
-                    await Application.Current.MainPage.Navigation.PushAsync(new ListPedidosDistribuidorPage());
-                 
+                    MainViewModel.GetInstance().SegPedDistri = new SegPedDistriViewModel();
+                    //await Application.Current.MainPage.Navigation.PushAsync(new ListPedidosDistribuidorPage());
+                    await Application.Current.MainPage.Navigation.PushAsync(new PedidosTabbedPage());
                 }
 
             }

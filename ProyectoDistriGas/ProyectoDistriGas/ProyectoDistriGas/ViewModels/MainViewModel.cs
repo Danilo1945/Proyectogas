@@ -121,7 +121,16 @@ namespace ProyectoDistriGas.ViewModels
             get;
             set;
         }
-
+        public SegPedDistriViewModel SegPedDistri
+        {
+            get;
+            set;
+        }
+        public FinalizarpedidoViewModel FienalizarPedido
+        {
+            get;
+            set;
+        }
 
         #endregion
 

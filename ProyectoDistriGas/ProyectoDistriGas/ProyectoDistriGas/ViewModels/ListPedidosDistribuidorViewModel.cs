@@ -11,6 +11,8 @@ namespace ProyectoDistriGas.ViewModels
     using System.Threading.Tasks;
     using Models;
     using Xamarin.Forms;
+    using System.Windows.Input;
+    using GalaSoft.MvvmLight.Command;
 
     public class ListPedidosDistribuidorViewModel: BaseViewModel
     {
@@ -63,12 +65,12 @@ namespace ProyectoDistriGas.ViewModels
         private async void LoadPedidos() 
         {
 
-
+            /*
             await Application.Current.MainPage.DisplayAlert(
                      "mensaje",
                      MainViewModel.GetInstance().Sesion.GetId().ToString(),
                      "Aceptar");
-
+*/
             this.IsRefreshing = true;
             string urlBase = configService.GetURLBase();
             string Serviceprefix = configService.GetServiceprefix();
@@ -159,6 +161,20 @@ namespace ProyectoDistriGas.ViewModels
               
             });
         }
+
+
+        #endregion
+        #region Commands
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(LoadPedidos);
+            }
+        }
+
+
 
 
         #endregion

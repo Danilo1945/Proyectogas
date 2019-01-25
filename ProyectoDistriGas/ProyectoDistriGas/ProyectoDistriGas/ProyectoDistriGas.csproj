@@ -73,6 +73,7 @@
     <Compile Include="ViewModels\DetallePedidoGeneralViewModel.cs" />
     <Compile Include="ViewModels\DistribuidorViewModel.cs" />
     <Compile Include="ViewModels\EntregasViewModel.cs" />
+    <Compile Include="ViewModels\FinalizarpedidoViewModel.cs" />
     <Compile Include="ViewModels\InicioViewModel.cs" />
     <Compile Include="ViewModels\ListPedidosDistribuidorItemViewModel.cs" />
     <Compile Include="ViewModels\ListPedidosDistribuidorViewModel.cs" />
@@ -81,6 +82,8 @@
     <Compile Include="ViewModels\NewCasaViewModel.cs" />
     <Compile Include="ViewModels\NewCilindroViewModel.cs" />
     <Compile Include="ViewModels\PedidoViewModel.cs" />
+    <Compile Include="ViewModels\SegPedDistriItenViewModel.cs" />
+    <Compile Include="ViewModels\SegPedDistriViewModel.cs" />
     <Compile Include="ViewModels\VariableViewModel.cs" />
     <Compile Include="Views\CasaPage.xaml.cs">
       <DependentUpon>CasaPage.xaml</DependentUpon>
@@ -103,6 +106,9 @@
     <Compile Include="Views\EntregasPage.xaml.cs">
       <DependentUpon>EntregasPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\FinalizarPedidoPage.xaml.cs">
+      <DependentUpon>FinalizarPedidoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InicioPage.xaml.cs">
       <DependentUpon>InicioPage.xaml</DependentUpon>
     </Compile>
@@ -120,6 +126,12 @@
     </Compile>
     <Compile Include="Views\PedidosPage.xaml.cs">
       <DependentUpon>PedidosPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PedidosTabbedPage.xaml.cs">
+      <DependentUpon>PedidosTabbedPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SegPedDistriPage.xaml.cs">
+      <DependentUpon>SegPedDistriPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VariablePage.xaml.cs">
       <DependentUpon>VariablePage.xaml</DependentUpon>
@@ -258,6 +270,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\EntregasPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SegPedDistriPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PedidosTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\FinalizarPedidoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

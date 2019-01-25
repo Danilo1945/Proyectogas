@@ -1,6 +1,8 @@
 ﻿
 namespace ProyectoDistriGas.ViewModels
 {
+    using ProyectoDistriGas.Config;
+    using ProyectoDistriGas.Services;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,21 +11,16 @@ namespace ProyectoDistriGas.ViewModels
     using Models;
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
-    using Services;
-    using Config;
     using Xamarin.Forms;
-    using Views;
-    using ViewModels;
 
-    public class DetallePedidoGeneralViewModel:BaseViewModel
+    public class FinalizarpedidoViewModel: BaseViewModel
     {
-
 
         #region Services
         private ApiService apiService;
         private ConfigService configService;
         #endregion
-        
+
         #region Atributos
         private long id;
         private long idP;
@@ -35,10 +32,15 @@ namespace ProyectoDistriGas.ViewModels
         private string email;
         private double latitud;
         private double longitud;
-
+        private List<UsuarioObjet> listUsuarios;
         #endregion
         #region propiedades
-        public PedidosGenerales PedidosGenerales
+        public Pedidos Pedidos
+        {
+            get;
+            set;
+        }
+        public Usuario Usuario
         {
             get;
             set;
@@ -59,7 +61,7 @@ namespace ProyectoDistriGas.ViewModels
             set { SetValue(ref cedula, value); }
         }
 
-  
+
 
         public string Nombres
         {
@@ -67,7 +69,7 @@ namespace ProyectoDistriGas.ViewModels
             set { SetValue(ref nombres, value); }
         }
 
-   
+
         public string Apellidos
         {
             get { return apellidos; }
@@ -106,40 +108,91 @@ namespace ProyectoDistriGas.ViewModels
 
         #region Constructores
 
-        public DetallePedidoGeneralViewModel(PedidosGenerales pedidosGenerales)
+        public FinalizarpedidoViewModel(Pedidos pedidos)
         {
-            this.configService = new ConfigService();
+
+            this.configService = new ConfigService( );
             this.apiService = new ApiService();
-            this.PedidosGenerales = pedidosGenerales;
+            this.Pedidos = pedidos;
             LoadDetallepedidos();
         }
+       
         #endregion
 
         #region Funciones
-        public void LoadDetallepedidos()
+        public async void LoadDetallepedidos()
         {
-            Id = PedidosGenerales.Usuario.Id;
-            IdP = PedidosGenerales.Id;
-            Cedula = PedidosGenerales.Usuario.Cedula;
-            Nombres = PedidosGenerales.Usuario.Nombres;
-            Apellidos = PedidosGenerales.Usuario.Apellidos;
-
-            Celular = PedidosGenerales.Usuario.Celular;
-            Direccion = PedidosGenerales.Usuario.Direccion;
-            Email = PedidosGenerales.Usuario.Email;
 
 
+
+          
+            string urlBase = configService.GetURLBase();
+            string Serviceprefix = configService.GetServiceprefix();
+            string Controller = "/usuario/view/" + this.Pedidos.UsuarioId+ ".json";
+
+            var response = await this.apiService.GetList<UsuarioObjet>(
+               urlBase,
+               Serviceprefix,
+               Controller);
+
+            if (!response.IsSuccess)
+            {
+                
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Aceptar");
+                await Application.Current.MainPage.Navigation.PopAsync();
+                return;
+            }
+            this.listUsuarios = (List<UsuarioObjet>)response.Result;
+
+
+
+            foreach( var item in listUsuarios)
+            {
+
+                this.Usuario = new Usuario
+                {
+                    Id=item.Usuario.Id,
+                    Cedula=item.Usuario.Cedula,
+                    Nombres = item.Usuario.Nombres,
+                    Apellidos = item.Usuario.Apellidos,
+                    Latitud=item.Usuario.Latitud,
+                    Longitud=item.Usuario.Longitud,
+                     Celular= item.Usuario.Celular,
+                    Direccion = item.Usuario.Direccion,
+                    Email = item.Usuario.Email,
+
+
+                };
+
+            } 
+
+
+            
+            Id = this.Usuario.Id;
+            IdP = this.Pedidos.Id;
+             Cedula = this.Usuario.Cedula;
+            Nombres = this.Usuario.Nombres;
+            Apellidos = this.Usuario.Apellidos;
+
+            Celular = this.Usuario.Celular;
+            Direccion = this.Usuario.Direccion;
+            Email = this.Usuario.Email;
+
+           
 
         }
         #endregion
-        
+
         #region Comendos
-        public ICommand AceptarPedidoCommand
+        public ICommand FinalizarPedidoCommand
         {
             get
             {
                 // recibe el evento y lo transfiere al metodo login
-                return new RelayCommand(AceptarPedido);
+                return new RelayCommand(FinalizarPedido);
             }
             set
             {
@@ -149,9 +202,9 @@ namespace ProyectoDistriGas.ViewModels
 
         }
 
-        private async void AceptarPedido()
+        private async void FinalizarPedido()
         {
-
+            /*
             string urlBase = configService.GetURLBase();
             string Serviceprefix = configService.GetServiceprefix();
 
@@ -187,7 +240,7 @@ namespace ProyectoDistriGas.ViewModels
             MainViewModel.GetInstance().ListPedidosDistribuidor = new ListPedidosDistribuidorViewModel();
 
             await Application.Current.MainPage.Navigation.PushAsync(new ListPedidosDistribuidorPage());
-
+*/
         }
         #endregion
 
